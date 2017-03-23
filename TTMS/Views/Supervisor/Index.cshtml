@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
+}
+<div class="jumbotron">
+    @using Microsoft.AspNet.Identity
+    @if (Request.IsAuthenticated)
+    {
+        @Html.AntiForgeryToken()
+
+        <h3>WELCOME @User.Identity.GetUserName()</h3>
+        <p class="lead">Here are the options for supervising area:</p><br />
+        <p><a href="@Url.Action("", "Supervisor")" class="btn btn-primary btn-lg">Add new Work</a></p><br />
+        <p><a href="@Url.Action("", "Supervisor")" class="btn btn-primary btn-lg">Assign work to student</a></p><br />
+        <p><a href="@Url.Action("", "Supervisor")" class="btn btn-primary btn-lg">View uncompleted Work</a></p><br />
+
+
+        @*<p><a href="" class="btn btn-primary btn-lg">Upload New Image &raquo;</a></p><br />
+            <p><a href="" class="btn btn-primary btn-lg">Update and Delete Images &raquo;</a></p><br />
+            <p><a href="" class="btn btn-primary btn-lg">View Submited Form &raquo;</a></p>*@
+    }
+</div>
