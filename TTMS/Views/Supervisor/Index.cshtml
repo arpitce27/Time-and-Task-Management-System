@@ -10,8 +10,9 @@
 
         <h3>WELCOME @User.Identity.GetUserName()</h3>
         <p class="lead">Here are the options for supervising area:</p><br />
-        <p><a href="@Url.Action("", "Supervisor")" class="btn btn-primary btn-lg">Add new Work</a></p><br />
-        <p><a href="@Url.Action("", "Supervisor")" class="btn btn-primary btn-lg">Assign work to student</a></p><br />
+        <p><a href="@Url.Action("Create", "Works")" class="btn btn-primary btn-lg">Create new Work</a></p><br />
+        <p><a href="@Url.Action("Index", "Works")" class="btn btn-primary btn-lg">All Works</a></p><br />
+        <p><a href="@Url.Action("Index", "WorkTypes")" class="btn btn-primary btn-lg">Create/Edit Work Type</a></p><br />
         <p><a href="@Url.Action("", "Supervisor")" class="btn btn-primary btn-lg">View uncompleted Work</a></p><br />
 
 

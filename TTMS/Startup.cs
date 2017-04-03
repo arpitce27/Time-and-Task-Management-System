@@ -13,7 +13,7 @@ namespace TTMS
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-			createRolesandUsers();
+			//createRolesandUsers();
 		}
 
 

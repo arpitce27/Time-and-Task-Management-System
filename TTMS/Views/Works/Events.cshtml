@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TTMS.Models.Work>
+
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
+}
+
+<h2>Events</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("Tasks", "Tasks") | @Html.ActionLink("Events", "Events") | @Html.ActionLink("Projects", "Projects")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkDescr)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkPriority.Priority)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.WorkType.WorkName)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkDescr)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Deadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkPriority.Priority)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.WorkType.WorkName)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PK_Work }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PK_Work }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PK_Work })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Back to Work", "Index", "Works")
+</p>

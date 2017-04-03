@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
+using TTMS.Models;
 
 namespace TTMS.Models
 {
@@ -41,5 +42,8 @@ namespace TTMS.Models
         }
 
         public virtual DbSet<OfficeInfo> OfficeInfo { get; set; }
+        public virtual DbSet<WorkType> WorkType { get; set; }
+        public virtual DbSet<WorkPriority> WorkPriority { get; set; }
+        public virtual DbSet<Work> Work { get; set; }
     }
 }
