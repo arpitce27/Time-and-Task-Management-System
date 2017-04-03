@@ -1,7 +1,7 @@
 ﻿@model TTMS.Models.Work
 
 @{
-    ViewBag.Title = "Create ";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
 }
 
@@ -13,37 +13,37 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Any type of work here in terms on Task, Project and Event</h4>
+        <h4>Work</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.FK_WorkType, "Work Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WorkTypeID, "WorkTypeID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("FK_WorkType", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FK_WorkType, "", new { @class = "text-danger" })
+                @Html.DropDownList("WorkTypeID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.WorkTypeID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FK_WorkPriority, "Work Priority", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Priority, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("FK_WorkPriority", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FK_WorkPriority, "", new { @class = "text-danger" })
+                @Html.EnumDropDownListFor(model => model.Priority, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.WorkTitle, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WorkTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Title Here" } })
+                @Html.EditorFor(model => model.WorkTitle, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.WorkTitle, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.WorkDescr,"Description", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WorkDescr, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WorkDescr, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Description Here" } })
+                @Html.EditorFor(model => model.WorkDescr, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.WorkDescr, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,19 +56,19 @@
             </div>
         </div>*@
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Deadline, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Deadline, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Deadline, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
         <div class="form-group">
             @Html.LabelFor(model => model.Deadline, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Deadline, new { @class = "form-control datepicker", placeholder = "Enter Deadline Here" })
                 @Html.ValidationMessageFor(model => model.Deadline, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -86,7 +86,8 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
-        $('.datepicker').datepicker(); //Initialise any date pickers
+            $('.datepicker').datepicker(); //Initialise any date pickers
     </script>
 }

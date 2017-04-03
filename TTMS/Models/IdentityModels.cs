@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
 using TTMS.Models;
+using System.Collections.Generic;
 
 namespace TTMS.Models
 {
@@ -19,6 +20,7 @@ namespace TTMS.Models
         public string State { get; set; }
         public string Zip { get; set; }
         public string Country { get; set; }
+        public virtual ICollection<WorkAssigned> WorkAssigned { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -43,7 +45,7 @@ namespace TTMS.Models
 
         public virtual DbSet<OfficeInfo> OfficeInfo { get; set; }
         public virtual DbSet<WorkType> WorkType { get; set; }
-        public virtual DbSet<WorkPriority> WorkPriority { get; set; }
-        public virtual DbSet<Work> Work { get; set; }
+
+        public System.Data.Entity.DbSet<TTMS.Models.Work> Works { get; set; }
     }
 }

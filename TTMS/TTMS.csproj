@@ -190,7 +190,6 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SupervisorController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="Controllers\WorkTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -205,30 +204,11 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OfficeInfo.cs" />
     <Compile Include="Models\SupervisorViewModel.cs" />
-    <Compile Include="Models\TTMS.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TTMS.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TTMS.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TTMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TTMS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TTMS.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Work.cs">
-      <DependentUpon>TTMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WorkPriority.cs">
-      <DependentUpon>TTMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WorkType.cs">
-      <DependentUpon>TTMS.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Work.cs" />
+    <Compile Include="Models\WorkAssigned.cs" />
+    <Compile Include="Models\WorkLog.cs" />
+    <Compile Include="Models\WorksController.cs" />
+    <Compile Include="Models\WorkType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -240,16 +220,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\TTMS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TTMS.edmx</DependentUpon>
-      <LastGenOutput>TTMS.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\TTMS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TTMS.edmx</DependentUpon>
-      <LastGenOutput>TTMS.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
@@ -261,13 +231,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
-    <EntityDeploy Include="Models\TTMS.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TTMS.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TTMS.edmx.diagram">
-      <DependentUpon>TTMS.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CRUDScripts\Controller.js" />
     <Content Include="Scripts\CRUDScripts\Model.js" />
@@ -330,19 +293,16 @@
     <Content Include="Views\Office\Details.cshtml" />
     <Content Include="Views\Office\Edit.cshtml" />
     <Content Include="Views\Office\Index.cshtml" />
-    <Content Include="Views\Works\Create.cshtml" />
-    <Content Include="Views\Works\Delete.cshtml" />
-    <Content Include="Views\Works\Details.cshtml" />
-    <Content Include="Views\Works\Edit.cshtml" />
-    <Content Include="Views\Works\Index.cshtml" />
-    <Content Include="Views\Works\Tasks.cshtml" />
-    <Content Include="Views\Works\Events.cshtml" />
-    <Content Include="Views\Works\Projects.cshtml" />
     <Content Include="Views\WorkTypes\Create.cshtml" />
     <Content Include="Views\WorkTypes\Delete.cshtml" />
     <Content Include="Views\WorkTypes\Details.cshtml" />
     <Content Include="Views\WorkTypes\Edit.cshtml" />
     <Content Include="Views\WorkTypes\Index.cshtml" />
+    <Content Include="Views\Works\Create.cshtml" />
+    <Content Include="Views\Works\Delete.cshtml" />
+    <Content Include="Views\Works\Details.cshtml" />
+    <Content Include="Views\Works\Edit.cshtml" />
+    <Content Include="Views\Works\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

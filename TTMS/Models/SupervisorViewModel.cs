@@ -19,7 +19,7 @@ namespace TTMS.Models
 
         [Required]
         [Display(Name = "Priority")]
-        public WorkPriority WorkPriority { get; set; }
+        public Priority Priority { get; set; }
 
         [Required]
         [StringLength(400, ErrorMessage = "The title must be at least 10 characters long.", MinimumLength = 10)]

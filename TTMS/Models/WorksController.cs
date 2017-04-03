@@ -6,20 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using TTMS.Models;
 
-namespace TTMS.Controllers
+namespace TTMS.Models
 {
     [Authorize(Roles = "Supervisor")]
     public class WorksController : Controller
     {
-        private TTMSEntities db = new TTMSEntities();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Works
         public ActionResult Index()
         {
-            var works = db.Works.Include(w => w.WorkPriority).Include(w => w.WorkType);
-            works = works.OrderBy(s => s.Deadline);
+            var works = db.Works.Include(w => w.WorkType);
             return View(works.ToList());
         }
 
@@ -41,8 +39,7 @@ namespace TTMS.Controllers
         // GET: Works/Create
         public ActionResult Create()
         {
-            ViewBag.FK_WorkPriority = new SelectList(db.WorkPriorities, "PK_WorkPriority", "Priority");
-            ViewBag.FK_WorkType = new SelectList(db.WorkTypes, "PK_WorkType", "WorkName");
+            ViewBag.WorkTypeID = new SelectList(db.WorkType, "ID", "TypeName");
             return View();
         }
 
@@ -51,7 +48,7 @@ namespace TTMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PK_Work,FK_WorkType,FK_WorkPriority,WorkTitle,WorkDescr,Deadline")] Work work)
+        public ActionResult Create([Bind(Include = "ID,WorkTypeID,Priority,WorkTitle,WorkDescr,Deadline,Status")] Work work)
         {
             work.CreationDate = DateTime.Now;
             if (ModelState.IsValid)
@@ -61,8 +58,7 @@ namespace TTMS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FK_WorkPriority = new SelectList(db.WorkPriorities, "PK_WorkPriority", "Priority", work.FK_WorkPriority);
-            ViewBag.FK_WorkType = new SelectList(db.WorkTypes, "PK_WorkType", "WorkName", work.FK_WorkType);
+            ViewBag.WorkTypeID = new SelectList(db.WorkType, "ID", "TypeName", work.WorkTypeID);
             return View(work);
         }
 
@@ -78,8 +74,7 @@ namespace TTMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FK_WorkPriority = new SelectList(db.WorkPriorities, "PK_WorkPriority", "Priority", work.FK_WorkPriority);
-            ViewBag.FK_WorkType = new SelectList(db.WorkTypes, "PK_WorkType", "WorkName", work.FK_WorkType);
+            ViewBag.WorkTypeID = new SelectList(db.WorkType, "ID", "TypeName", work.WorkTypeID);
             return View(work);
         }
 
@@ -88,7 +83,7 @@ namespace TTMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PK_Work,FK_WorkType,FK_WorkPriority,WorkTitle,WorkDescr,CreationDate,Deadline")] Work work)
+        public ActionResult Edit([Bind(Include = "ID,WorkTypeID,Priority,WorkTitle,WorkDescr,CreationDate,Deadline,Status")] Work work)
         {
             if (ModelState.IsValid)
             {
@@ -96,8 +91,7 @@ namespace TTMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.FK_WorkPriority = new SelectList(db.WorkPriorities, "PK_WorkPriority", "Priority", work.FK_WorkPriority);
-            ViewBag.FK_WorkType = new SelectList(db.WorkTypes, "PK_WorkType", "WorkName", work.FK_WorkType);
+            ViewBag.WorkTypeID = new SelectList(db.WorkType, "ID", "TypeName", work.WorkTypeID);
             return View(work);
         }
 
@@ -134,27 +128,6 @@ namespace TTMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public ActionResult Tasks()
-        {
-            var works = db.Works.Include(w => w.WorkPriority).Include(w => w.WorkType);
-            var tasks = works.Where(t => t.WorkType.WorkName == "task");
-            return View(tasks.ToList());
-        }
-        public ActionResult Events()
-        {
-            var works = db.Works.Include(w => w.WorkPriority).Include(w => w.WorkType);
-            var tasks = works.Where(t => t.WorkType.WorkName == "event");
-            return View(tasks.ToList());
-            return View(tasks.ToList());
-        }
-        public ActionResult Projects()
-        {
-            var works = db.Works.Include(w => w.WorkPriority).Include(w => w.WorkType);
-            var tasks = works.Where(t => t.WorkType.WorkName == "project");
-            return View(tasks.ToList());
-            return View(tasks.ToList());
         }
     }
 }

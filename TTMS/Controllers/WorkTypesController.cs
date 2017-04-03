@@ -10,15 +10,14 @@ using TTMS.Models;
 
 namespace TTMS.Controllers
 {
-    [Authorize(Roles = "Supervisor")]
     public class WorkTypesController : Controller
     {
-        private TTMSEntities db = new TTMSEntities();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: WorkTypes
         public ActionResult Index()
         {
-            return View(db.WorkTypes.ToList());
+            return View(db.WorkType.ToList());
         }
 
         // GET: WorkTypes/Details/5
@@ -28,7 +27,7 @@ namespace TTMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WorkType workType = db.WorkTypes.Find(id);
+            WorkType workType = db.WorkType.Find(id);
             if (workType == null)
             {
                 return HttpNotFound();
@@ -47,11 +46,11 @@ namespace TTMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PK_WorkType,WorkName")] WorkType workType)
+        public ActionResult Create([Bind(Include = "ID,TypeName")] WorkType workType)
         {
             if (ModelState.IsValid)
             {
-                db.WorkTypes.Add(workType);
+                db.WorkType.Add(workType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +65,7 @@ namespace TTMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WorkType workType = db.WorkTypes.Find(id);
+            WorkType workType = db.WorkType.Find(id);
             if (workType == null)
             {
                 return HttpNotFound();
@@ -79,7 +78,7 @@ namespace TTMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PK_WorkType,WorkName")] WorkType workType)
+        public ActionResult Edit([Bind(Include = "ID,TypeName")] WorkType workType)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +96,7 @@ namespace TTMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WorkType workType = db.WorkTypes.Find(id);
+            WorkType workType = db.WorkType.Find(id);
             if (workType == null)
             {
                 return HttpNotFound();
@@ -110,8 +109,8 @@ namespace TTMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            WorkType workType = db.WorkTypes.Find(id);
-            db.WorkTypes.Remove(workType);
+            WorkType workType = db.WorkType.Find(id);
+            db.WorkType.Remove(workType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

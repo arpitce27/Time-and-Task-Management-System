@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
 }
 
-<h2>Types of Work</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.WorkName)
+            @Html.DisplayNameFor(model => model.TypeName)
         </th>
         <th></th>
     </tr>
@@ -21,17 +21,14 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.WorkName)
+            @Html.DisplayFor(modelItem => item.TypeName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PK_WorkType }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PK_WorkType }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PK_WorkType })
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
 
 </table>
-<p>
-    @Html.ActionLink("Back to Home", "Index", "Supervisor")
-</p>
