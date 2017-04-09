@@ -67,6 +67,14 @@
             @Html.DisplayFor(model => model.Status)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Assignedstudents)
+        </dt>
+
+        <dd>
+            @Html.ListBox("Id", new SelectList(Model.Assignedstudents, "Id", "FirstName"))
+        </dd>
+
     </dl>
 </div>
 <p>

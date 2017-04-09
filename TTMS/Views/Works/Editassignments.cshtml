@@ -19,7 +19,7 @@
         @Html.HiddenFor(model => model.Work.ID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Work.WorkTitle, htmlAttributes: new { @class = "control-label col-md-2", @readonly = true })
+            @Html.LabelFor(model => model.Work.WorkTitle, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DisplayFor(modelItem => Model.Work.WorkTitle)
                 @*@Html.EditorFor(model => model.Work.WorkTitle, new { htmlAttributes = new { @class = "form-control" } })*@

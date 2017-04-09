@@ -304,6 +304,9 @@
     <Content Include="Views\Works\Edit.cshtml" />
     <Content Include="Views\Works\Index.cshtml" />
     <Content Include="Views\Works\Editassignments.cshtml" />
+    <Content Include="Views\Works\Tasks.cshtml" />
+    <Content Include="Views\Works\Events.cshtml" />
+    <Content Include="Views\Works\Projects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

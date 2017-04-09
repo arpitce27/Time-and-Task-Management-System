@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<TTMS.Models.Work>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tasks";
     Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Tasks</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -36,7 +36,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Priority)
@@ -57,10 +58,10 @@
             @Html.ListBox("Id", new SelectList(item.Assignedstudents, "Id", "FirstName"))
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
             @Html.ActionLink("Edit Assignments", "Editassignments", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
     </tr>
 }

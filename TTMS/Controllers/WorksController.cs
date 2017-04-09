@@ -10,6 +10,7 @@ using TTMS.Models;
 
 namespace TTMS.Controllers
 {
+    [Authorize(Roles = "Supervisor")]
     public class WorksController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -28,7 +29,7 @@ namespace TTMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Work work = db.Works.Find(id);
+            Work work = db.Works.Include(i => i.Assignedstudents).First(i => i.ID == id);
             if (work == null)
             {
                 return HttpNotFound();
@@ -140,7 +141,7 @@ namespace TTMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,WorkTypeID,Priority,WorkTitle,WorkDescr,CreationDate,Deadline,Status")] Work work)
+        public ActionResult Edit([Bind(Include = "ID,WorkTypeID,Priority,WorkTitle,WorkDescr,Deadline,Status")] Work work)
         {
             if (ModelState.IsValid)
             {
@@ -186,5 +187,25 @@ namespace TTMS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Tasks()
+        {
+            var works = db.Works.Include(w => w.WorkType);
+            var tasks = works.Where(t => t.WorkType.TypeName == "task");
+            return View(tasks.ToList());
+        }
+        public ActionResult Events()
+        {
+            var works = db.Works.Include(w => w.WorkType);
+            var tasks = works.Where(t => t.WorkType.TypeName == "event");
+            return View(tasks.ToList());
+        }
+        public ActionResult Projects()
+        {
+            var works = db.Works.Include(w => w.WorkType);
+            var tasks = works.Where(t => t.WorkType.TypeName == "project");
+            return View(tasks.ToList());
+        }
+
     }
 }
