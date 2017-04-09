@@ -176,7 +176,7 @@ namespace TTMS.Controllers
         {
             if (ModelState.IsValid)
             {
-				var user = new ApplicationUser {
+				var user = new User {
                     UserName = model.UserName,
                     Email = model.Email,
                     Office = model.Office,
@@ -422,7 +422,7 @@ namespace TTMS.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

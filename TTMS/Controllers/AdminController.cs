@@ -73,7 +73,7 @@ namespace TTMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                var user = new User
                 {
                     UserName = model.UserName,
                     Email = model.Email,

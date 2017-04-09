@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Edit";
-    ViewBag.CreationDate = Model.CreationDate;
     Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
 }
 
@@ -54,7 +53,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CreationDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.CreationDate, new { @class = "form-control datepicker", placeholder = "Enter Creation date" })
+                @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CreationDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -62,7 +61,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Deadline, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Deadline, new { @class = "form-control datepicker1", placeholder = "Enter Deadline date" })
+                @Html.EditorFor(model => model.Deadline, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Deadline, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -89,8 +88,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-            $('.datepicker').datepicker();
-            $('.datepicker1').datepicker();//Initialise any date pickers
-    </script>
 }

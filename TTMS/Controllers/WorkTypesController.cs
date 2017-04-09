@@ -10,6 +10,7 @@ using TTMS.Models;
 
 namespace TTMS.Controllers
 {
+    [Authorize(Roles = "Supervisor")]
     public class WorkTypesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -48,18 +48,18 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.CreationDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CreationDate, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Deadline, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Deadline, new { @class = "form-control datepicker", placeholder = "Enter Deadline Here" })
+                @Html.EditorFor(model => model.Deadline, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Deadline, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -86,8 +86,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-            $('.datepicker').datepicker(); //Initialise any date pickers
-    </script>
 }

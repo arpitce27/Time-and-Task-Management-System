@@ -49,7 +49,7 @@ namespace TTMS.Controllers
 			if (User.Identity.IsAuthenticated)
 			{
 				var user = User.Identity;
-				var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+				var UserManager = new UserManager<User>(new UserStore<User>(context));
 				var s = UserManager.GetRoles(user.GetUserId());
 				if (s[0].ToString() == "Admin")
 				{

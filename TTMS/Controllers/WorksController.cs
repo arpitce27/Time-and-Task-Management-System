@@ -6,10 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TTMS.Models;
 
-namespace TTMS.Models
+namespace TTMS.Controllers
 {
-    [Authorize(Roles = "Supervisor")]
     public class WorksController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -48,9 +48,8 @@ namespace TTMS.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,WorkTypeID,Priority,WorkTitle,WorkDescr,Deadline,Status")] Work work)
+        public ActionResult Create([Bind(Include = "ID,WorkTypeID,Priority,WorkTitle,WorkDescr,CreationDate,Deadline,Status")] Work work)
         {
-            work.CreationDate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Works.Add(work);
@@ -60,6 +59,64 @@ namespace TTMS.Models
 
             ViewBag.WorkTypeID = new SelectList(db.WorkType, "ID", "TypeName", work.WorkTypeID);
             return View(work);
+        }
+
+        //Get Editassignments/1
+        public ActionResult Editassignments(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Work work = db.Works.Find(id);
+            var workassignmentviewmodel = new WorkAssignmentViewModel
+            {
+                Work = db.Works.Include(i => i.Assignedstudents).First(i => i.ID == id)
+            };
+
+            if (workassignmentviewmodel == null)
+                return HttpNotFound();
+
+            var allstudents = db.Users
+                                 .Where(x => x.Roles.Select(y => y.RoleId)
+                                 .Contains("33abfbd1-cd4a-473a-ac9c-1924899cc0c8"))
+                                 .ToList();
+            workassignmentviewmodel.AllStudents = allstudents.Select(i => new SelectListItem
+            {
+                Text = i.FirstName,
+                Value = i.Id.ToString()
+            });
+            ViewBag.WorkTypeID = new SelectList(db.WorkType, "ID", "TypeName", workassignmentviewmodel.Work.WorkTypeID);
+            return View(workassignmentviewmodel);
+        }
+
+        // POST: Works/Editassignments/1
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editassignments(WorkAssignmentViewModel _workassignmentviewmodel)
+        {
+            if(_workassignmentviewmodel == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (ModelState.IsValid)
+            {
+                var assignmenttoupdate = db.Works.Include(i => i.Assignedstudents).First(i => i.ID == _workassignmentviewmodel.Work.ID);
+
+                if (TryUpdateModel(assignmenttoupdate, "Work", new string[] { "Status" }))
+                {
+                    var newselectedstudents = new HashSet<string>(_workassignmentviewmodel.SelectedStudents);
+                    foreach(User u in db.Users)
+                    {
+                        if (!newselectedstudents.Contains(u.Id))
+                            assignmenttoupdate.Assignedstudents.Remove(u);
+                        else
+                            assignmenttoupdate.Assignedstudents.Add(u);
+                    }
+                    db.Entry(assignmenttoupdate).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+            return View(_workassignmentviewmodel);
         }
 
         // GET: Works/Edit/5

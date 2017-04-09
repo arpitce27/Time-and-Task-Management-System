@@ -13,6 +13,6 @@ namespace TTMS.Models
         public DateTime Date { get; set; }
         public string LogDescr { get; set; }
         public virtual Work Work { get; set; }
-        public virtual ApplicationUser User { get; set; }
+        public virtual User User { get; set; }
     }
 }
