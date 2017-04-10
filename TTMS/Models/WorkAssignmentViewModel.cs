@@ -10,7 +10,6 @@ namespace TTMS.Models
     {
         public Work Work { get; set; }
         public IEnumerable<SelectListItem> AllStudents { get; set; }
-
         private List<string> _selectedstudents;
         public List<string> SelectedStudents
         {

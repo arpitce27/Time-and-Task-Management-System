@@ -184,6 +184,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AssignedTaskController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OfficeController.cs" />
@@ -307,6 +308,13 @@
     <Content Include="Views\Works\Tasks.cshtml" />
     <Content Include="Views\Works\Events.cshtml" />
     <Content Include="Views\Works\Projects.cshtml" />
+    <Content Include="Views\AssignedTask\Delete.cshtml" />
+    <Content Include="Views\AssignedTask\Details.cshtml" />
+    <Content Include="Views\AssignedTask\Edit.cshtml" />
+    <Content Include="Views\AssignedTask\Index.cshtml" />
+    <Content Include="Views\AssignedTask\Tasks.cshtml" />
+    <Content Include="Views\AssignedTask\Events.cshtml" />
+    <Content Include="Views\AssignedTask\Projects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

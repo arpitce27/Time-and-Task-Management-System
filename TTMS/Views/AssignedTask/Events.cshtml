@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TTMS.Models.Work>
+
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Events</h2>
+
+<p>
+    @Html.ActionLink("Your tasks", "Tasks") | @Html.ActionLink("Your group projects", "Projects") | @Html.ActionLink("Upcoming events", "Events")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkType.TypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkDescr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkType.TypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkDescr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Update the status", "Edit", new { id = item.ID }) | 
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

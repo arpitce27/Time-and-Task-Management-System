@@ -3,17 +3,21 @@
     ViewBag.Title = "Index";
 }
 
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    @Html.AntiForgeryToken()
+
+    <h3>WELCOME @User.Identity.GetUserName()</h3>
+        <p class="lead">Here are the options for user:</p><br />
+        <p><a href="@Url.Action("Index", "AssignedTask")" class="btn btn-primary btn-lg">See assigned tasks</a></p><br />
+        @*<p><a href="@Url.Action("Index", "Works")" class="btn btn-primary btn-lg">All Works</a></p><br />
+        <p><a href="@Url.Action("Index", "WorkTypes")" class="btn btn-primary btn-lg">Create/Edit Work Type</a></p><br />
+        <p><a href="@Url.Action("", "Supervisor")" class="btn btn-primary btn-lg">View uncompleted Work</a></p><br />*@
 
 
-@if (ViewBag.displayMenu == "Yes")
-{
-    <h1>Welcome Student User.</h1>
-    <h3>
-        <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
-    </h3>
-}
-else
-{
-    <h2>  Welcome <strong>@ViewBag.Name</strong> :) .We will add user module soon </h2>
+        @*<p><a href="" class="btn btn-primary btn-lg">Upload New Image &raquo;</a></p><br />
+            <p><a href="" class="btn btn-primary btn-lg">Update and Delete Images &raquo;</a></p><br />
+            <p><a href="" class="btn btn-primary btn-lg">View Submited Form &raquo;</a></p>*@
 }
 

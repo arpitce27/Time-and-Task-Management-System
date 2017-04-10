@@ -15,7 +15,7 @@ namespace TTMS.Models
     {
         public User()
         {
-           this.Works = new HashSet<Work>();
+           this.AssignedWorks = new HashSet<Work>();
         }
         public string Office { get; set; }
         public string FirstName { get; set; }
@@ -25,7 +25,7 @@ namespace TTMS.Models
         public string State { get; set; }
         public string Zip { get; set; }
         public string Country { get; set; }
-        public virtual ICollection<Work> Works { get; set; }
+        public virtual ICollection<Work> AssignedWorks { get; set; }
         public virtual IdentityRole UserRoles { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
