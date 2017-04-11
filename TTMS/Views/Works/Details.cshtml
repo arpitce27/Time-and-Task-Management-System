@@ -77,7 +77,49 @@
 
     </dl>
 </div>
+@Html.Partial("_SubmitCommentPartial", new ViewDataDictionary { { "id", Model.ID } })
+<div class="page-header"><h4><b>Comments of this work</b></h4></div>
+    <div class="container">
+        @if (Model.Comments.Any())
+        {
+            DateTime date2 = DateTime.Now;
+            foreach (var com in Model.Comments.ToList())
+            {
+                TimeSpan timeDifference = date2.Subtract(com.PostTime);
+                var timePassed = timeDifference.Hours.ToString() + " Hours Ago";
+                if (timeDifference.Hours < 1)
+                {
+                    timePassed = timeDifference.Minutes.ToString() + " Minutes Ago";
+                }
+                if (timeDifference.Minutes < 1)
+                {
+                    timePassed = timeDifference.Seconds + " Seconds Ago";
+                }
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            @com.User.FirstName
+                            <small>@timePassed</small>
+                        </h4>
+                        @com.Content
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No Comments</p>
+
+        }
+</div>
+<hr>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@*@Html.Partial("_CommentFormPartial", new ViewDataDictionary { { "id", Model.ID } })*@
+

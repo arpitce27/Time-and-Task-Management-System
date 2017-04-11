@@ -1,0 +1,20 @@
+﻿@model TTMS.Models.CommentViewModel
+
+
+@using (Html.BeginForm("SubmitComment", "Works", new { id = ViewData["id"] }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <hr>
+    <div class="well">
+        <h4>LEAVE YOUR COMMENTS</h4>
+        <form role="form">
+
+            <div class="form-group">
+                    @Html.TextAreaFor(c => c.Content, new { @class = "form-control", rows = "3", placeholder = "Add Your Comment Here..." })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <hr>
+}

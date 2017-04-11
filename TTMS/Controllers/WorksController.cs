@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,7 +13,7 @@ using TTMS.Models;
 namespace TTMS.Controllers
 {
     [Authorize(Roles = "Supervisor")]
-    public class WorksController : Controller
+    public class WorksController : AccountController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -205,6 +207,33 @@ namespace TTMS.Controllers
             var works = db.Works.Include(w => w.WorkType);
             var tasks = works.Where(t => t.WorkType.TypeName == "project");
             return View(tasks.ToList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SubmitComment(CommentViewModel model, int? id)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    if (!String.IsNullOrEmpty(model.Content))
+                    {
+                        Comment comment = new Comment()
+                        {
+                            PostTime = DateTime.Now,
+                            Content = model.Content,
+                            Work = db.Works.Where(p => p.ID == id).FirstOrDefault(),
+                            User = db.Users.FirstOrDefault(u => u.Id == user.Id)
+                        };
+                        db.Comment.Add(comment);
+                        db.SaveChanges();
+                    }
+                }
+                return RedirectToAction("Details", "Works", new { id = id });
+            }
+            return RedirectToAction("Details", "Works", new { id = id });
         }
 
     }

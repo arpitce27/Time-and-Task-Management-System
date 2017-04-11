@@ -19,6 +19,7 @@ namespace TTMS.Models
         public Work()
         {
             this.Assignedstudents = new HashSet<User>();
+            this.Comments = new HashSet<Comment>();
         }
         [Key]
         public int ID { get; set; }
@@ -45,6 +46,7 @@ namespace TTMS.Models
 
         public virtual WorkType WorkType { get; set; }
         public virtual ICollection<User> Assignedstudents { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
     }
 }

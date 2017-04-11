@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace TTMS.Controllers
 {
-    public class AssignedTaskController : Controller
+    public class AssignedTaskController : AccountController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -113,6 +113,33 @@ namespace TTMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SubmitComment(CommentViewModel model, int? id)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    if (!String.IsNullOrEmpty(model.Content))
+                    {
+                        Comment comment = new Comment()
+                        {
+                            PostTime = DateTime.Now,
+                            Content = model.Content,
+                            Work = db.Works.Where(p => p.ID == id).FirstOrDefault(),
+                            User = db.Users.FirstOrDefault(u => u.Id == user.Id)
+                        };
+                        db.Comment.Add(comment);
+                        db.SaveChanges();
+                    }
+                }
+                return RedirectToAction("Details", "Works", new { id = id });
+            }
+            return RedirectToAction("Details", "Works", new { id = id });
         }
     }
 }

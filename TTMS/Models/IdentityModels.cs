@@ -53,6 +53,7 @@ namespace TTMS.Models
         public virtual DbSet<WorkType> WorkType { get; set; }
 
         public System.Data.Entity.DbSet<TTMS.Models.Work> Works { get; set; }
+        public DbSet<Comment> Comment { get; set; }
         //public IEnumerable ApplicationUsers { get; internal set; }
     }
 }
