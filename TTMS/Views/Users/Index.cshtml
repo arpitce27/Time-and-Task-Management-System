@@ -11,6 +11,9 @@
     <h3>WELCOME @User.Identity.GetUserName()</h3>
         <p class="lead">Here are the options for user:</p><br />
         <p><a href="@Url.Action("Index", "AssignedTask")" class="btn btn-primary btn-lg">See assigned tasks</a></p><br />
+        <p><a href="@Url.Action("Create", "WorkLogs")" class="btn btn-primary btn-lg">Enter your work log here!</a></p><br />
+        <p><a href="@Url.Action("Index", "WorkLogs")" class="btn btn-primary btn-lg">See your Work log</a></p><br />
+
         @*<p><a href="@Url.Action("Index", "Works")" class="btn btn-primary btn-lg">All Works</a></p><br />
         <p><a href="@Url.Action("Index", "WorkTypes")" class="btn btn-primary btn-lg">Create/Edit Work Type</a></p><br />
         <p><a href="@Url.Action("", "Supervisor")" class="btn btn-primary btn-lg">View uncompleted Work</a></p><br />*@

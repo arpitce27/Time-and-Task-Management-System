@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace TTMS.Controllers
 {
+    [Authorize(Roles = "Student")]
     public class AssignedTaskController : AccountController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -137,9 +138,9 @@ namespace TTMS.Controllers
                         db.SaveChanges();
                     }
                 }
-                return RedirectToAction("Details", "Works", new { id = id });
+                return RedirectToAction("Details", "AssignedTask", new { id = id });
             }
-            return RedirectToAction("Details", "Works", new { id = id });
+            return RedirectToAction("Details", "AssignedTask", new { id = id });
         }
     }
 }

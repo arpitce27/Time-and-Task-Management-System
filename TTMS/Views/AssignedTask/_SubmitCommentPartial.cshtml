@@ -1,7 +1,7 @@
 ﻿@model TTMS.Models.CommentViewModel
 
 
-@using (Html.BeginForm("SubmitComment", "Works", new { id = ViewData["id"] }, FormMethod.Post))
+@using (Html.BeginForm("SubmitComment", "AssignedTask", new { id = ViewData["id"] }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <hr>

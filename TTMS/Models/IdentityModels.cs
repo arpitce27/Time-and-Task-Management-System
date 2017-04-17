@@ -54,6 +54,7 @@ namespace TTMS.Models
 
         public System.Data.Entity.DbSet<TTMS.Models.Work> Works { get; set; }
         public DbSet<Comment> Comment { get; set; }
+        public DbSet<WorkLog> WorkLog { get; set; }
         //public IEnumerable ApplicationUsers { get; internal set; }
     }
 }

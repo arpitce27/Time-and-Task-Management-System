@@ -1,0 +1,59 @@
+﻿@model TTMS.Models.WorkLog
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkLog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.work.WorkTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.work.WorkTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CretionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CretionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeSpend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeSpend)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
