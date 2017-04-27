@@ -8,7 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using TTMS.Models;
 using Microsoft.AspNet.Identity;
-
+using System.Net.Mail;
+using System.IO;
+using System.Reflection;
 
 namespace TTMS.Controllers
 {
@@ -86,12 +88,21 @@ namespace TTMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,WorkTypeID,Priority,WorkTitle,WorkDescr,CreationDate,Deadline,Status")] Work work)
         {
+            string userid = User.Identity.GetUserId();
+            var un = db.Users.Where(i => i.Id == userid).FirstOrDefault();
+            string workname = work.WorkTitle;
+            string st = work.Status.ToString();
             if (ModelState.IsValid)
             {
                 db.Entry(work).State = EntityState.Modified;
                 db.SaveChanges();
+                if (st == "Completed")
+                {
+                    sendMail(workname, un.FirstName);
+                }
                 return RedirectToAction("Index");
             }
+
             ViewBag.WorkTypeID = new SelectList(db.WorkType, "ID", "TypeName", work.WorkTypeID);
             return View(work);
         }
@@ -141,6 +152,76 @@ namespace TTMS.Controllers
                 return RedirectToAction("Details", "AssignedTask", new { id = id });
             }
             return RedirectToAction("Details", "AssignedTask", new { id = id });
+        }
+
+        public void sendMail(string workname, string username)
+        {
+            try
+            {
+                string from = "arpitkumar27@gmail.com";
+                string to = "arpit.ce27@gmail.com"; // All supervisor mail
+                MailMessage objMsg = new MailMessage(from, to);
+
+                //string cc = "arpit.ce27@gmail.com"; //Add all supervisor email as a cc
+                var sup_list = db.Users
+                                 .Where(x => x.Roles.Select(y => y.RoleId)
+                                 .Contains("8d26f441-eb00-4c93-80a2-8789705b5ea0"))
+                                 .ToList();
+                //foreach (var s in sup_list)
+                //{
+                //    objMsg.To.Add(s.Email);
+                //}
+                //objMsg.CC.Add(cc);
+
+                string body = GetBodyText(workname, username);
+                AlternateView avHtml = AlternateView.CreateAlternateViewFromString(body, null, "text/html");
+
+                // Add the alternate views instead of using MailMessage.Body
+                objMsg.AlternateViews.Add(avHtml);
+
+                objMsg.Subject = "Assigned task has been completed";
+
+                objMsg.IsBodyHtml = true;
+                SmtpClient client = new SmtpClient();
+                client.Host = "smtp.gmail.com";
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.Credentials = new System.Net.NetworkCredential("arpitkumar27@gmail.com", "Rightdirections_91010");
+                client.Send(objMsg);
+                //SmtpClient objMailClient = GetSMTPClientObject();
+                //objMailClient.Credentials = new NetworkCredential(from, "Rightdirections_91010");
+                //objMailClient.Send(objMsg);
+                //return true;
+            }
+            catch (Exception e)
+            {}
+        }
+        public string GetBodyText(string WorkName, string UserName)
+        {
+            string strBody = ReadTemplateFile();
+            //var UserData = order.GetBillingAddress();
+            strBody = strBody.Replace("##Work##", WorkName);
+            strBody = strBody.Replace("##By##", UserName);
+            return strBody;
+        }
+        public string ReadTemplateFile()
+        {
+            String contents = string.Empty;
+            try
+            {     //using (StreamReader objStreamReader = System.IO.File.OpenText(Server.MapPath("../") + Path))
+                string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                using (StreamReader objStreamReader = System.IO.File.OpenText("A:/Study Line/SampleProject/ASP.NET MVC 5 Security And Creating User Role/Time and Task Management System/TTMS/Template/Template.html"))
+                {
+                    contents = objStreamReader.ReadToEnd();
+                    objStreamReader.Close();
+                }
+            }
+            catch (Exception e)
+            {
+            }
+            return contents;
+
         }
     }
 }

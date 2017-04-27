@@ -95,7 +95,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to your hours", "Index") | @Html.ActionLink("Back to home", "Index", "Users")
 </div>
 
 @section Scripts {
@@ -107,7 +107,7 @@
     $(function () {
         $('#datetimepicker6').datetimepicker();
         $('#datetimepicker7').datetimepicker({
-            useCurrent: false //Important! See issue #1075
+            useCurrent: false
         });
         $("#datetimepicker6").on("dp.change", function (e) {
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
