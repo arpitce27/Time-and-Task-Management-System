@@ -55,7 +55,8 @@ namespace TTMS.Controllers
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
             workLog.user = db.Users.FirstOrDefault(u => u.Id == user.Id);
-            workLog.TimeSpend = (workLog.EndTime - workLog.StartTime).TotalHours;
+            double ts = (workLog.EndTime - workLog.StartTime).TotalHours;
+            workLog.TimeSpend = Math.Round(ts, 2);
             workLog.CretionDate = DateTime.Now;
             if (ModelState.IsValid)
             {

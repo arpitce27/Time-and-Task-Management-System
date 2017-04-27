@@ -192,6 +192,7 @@
     <Compile Include="Controllers\SupervisorController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WorkLogsController.cs" />
+    <Compile Include="Controllers\WorkReportController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="Controllers\WorkTypesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -434,6 +435,8 @@
     <Content Include="Views\WorkLogs\Edit.cshtml" />
     <Content Include="Views\WorkLogs\Index.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\WorkReport\Details.cshtml" />
+    <Content Include="Views\WorkReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
