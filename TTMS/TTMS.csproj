@@ -214,6 +214,10 @@
     <Compile Include="Migrations\201704112232191_41117-worklog-added.Designer.cs">
       <DependentUpon>201704112232191_41117-worklog-added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705042329580_work-model-changed.cs" />
+    <Compile Include="Migrations\201705042329580_work-model-changed.Designer.cs">
+      <DependentUpon>201705042329580_work-model-changed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -224,6 +228,7 @@
     <Compile Include="Models\Work.cs" />
     <Compile Include="Models\WorkAssignmentViewModel.cs" />
     <Compile Include="Models\WorkLog.cs" />
+    <Compile Include="Models\WorkReportViewModel.cs" />
     <Compile Include="Models\WorkType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -408,7 +413,6 @@
     <Content Include="Views\Office\Index.cshtml" />
     <Content Include="Views\WorkTypes\Create.cshtml" />
     <Content Include="Views\WorkTypes\Delete.cshtml" />
-    <Content Include="Views\WorkTypes\Details.cshtml" />
     <Content Include="Views\WorkTypes\Edit.cshtml" />
     <Content Include="Views\WorkTypes\Index.cshtml" />
     <Content Include="Views\Works\Create.cshtml" />
@@ -437,6 +441,7 @@
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\WorkReport\Details.cshtml" />
     <Content Include="Views\WorkReport\Index.cshtml" />
+    <Content Include="Views\WorkReport\reportbywork.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -464,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704112232191_41117-worklog-added.resx">
       <DependentUpon>201704112232191_41117-worklog-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705042329580_work-model-changed.resx">
+      <DependentUpon>201705042329580_work-model-changed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

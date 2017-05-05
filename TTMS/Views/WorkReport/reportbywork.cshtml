@@ -1,0 +1,41 @@
+﻿@model IList<TTMS.Models.reportbywork>
+
+@{
+    ViewBag.Title = "Report By Work";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Report By Individual Hour</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Work Title
+        </th>
+        <th>
+            Student Worked
+        </th>
+        <th>
+            Hour Spent
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.worktitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hourworked)
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

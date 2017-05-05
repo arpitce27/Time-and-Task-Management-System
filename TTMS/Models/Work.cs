@@ -24,26 +24,37 @@ namespace TTMS.Models
         }
         [Key]
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "You must choose the work type")]
         [Display(Name = "Work Type")]
         public int WorkTypeID { get; set; }
+
+        [Required(ErrorMessage = "You must choose the priority")]
         public Priority Priority { get; set; }
 
+        [Required(ErrorMessage = "Work title field is required")]
         [StringLength(200, MinimumLength = 5)]
         [Display(Name = "Work Title")]
         public string WorkTitle { get; set; }
+
+        [Required(ErrorMessage = "Description field is required")]
         [StringLength(400, MinimumLength = 5)]
         [Display(Name = "Description")]
         public string WorkDescr { get; set; }
 
+        [Required(ErrorMessage = "Creation Date field is required")]
         [DataType(DataType.Date)]
         [Display(Name = "Creation Date")]
         public System.DateTime CreationDate { get; set; }
 
+        [Required(ErrorMessage = "Deadline Date field is required")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> Deadline { get; set; }
 
         [DisplayFormat(NullDisplayText = "Initiated")]
         public Status? Status { get; set; }
+
+        [Display(Name = "Hour Worked")]
         public double HourWorked
         {
             get
@@ -57,6 +68,8 @@ namespace TTMS.Models
             }
         }
         public virtual WorkType WorkType { get; set; }
+
+        [Display(Name = "Assigned Students")]
         public virtual ICollection<User> Assignedstudents { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<WorkLog> RelatedWorkLogs { get; set; }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title TTMS Supervison</title>
+    <title>TTMS - Supervisor</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -23,8 +23,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Supervisor")</li>
                     <li>@Html.ActionLink("Add Work", "Create", "Works")</li>
-                    <li>@Html.ActionLink("Assign Work", "", "Supervisor")</li>
-                    <li>@Html.ActionLink("Individual report", "", "Supervisor")</li>
+                    <li>@Html.ActionLink("Assign Work", "Index", "Works")</li>
+                    <li>@Html.ActionLink("Individual report", "Index", "WorkReport")</li>
                     @*<li>@Html.ActionLink("", "", "Supervisor")</li>*@
                     @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>

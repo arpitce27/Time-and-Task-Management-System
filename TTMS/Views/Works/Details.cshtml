@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Individual Work Detail</h2>
 
-<div>
+@*<div>
     <h4>Work</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -76,7 +76,30 @@
         </dd>
 
     </dl>
-</div>
+</div>*@
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading text-uppercase">@Html.DisplayFor(model => model.WorkTitle)</h2>
+                <h4 class="section-heading">A @Html.DisplayFor(model => model.WorkType.TypeName) with @Html.DisplayFor(model => model.Priority) priority</h4>
+                <hr class="light">
+                <h4><p class="text-faded">@Html.DisplayFor(model => model.WorkDescr)</p></h4>
+                <hr class="light">
+                <h4 class="section-heading"><b>Creation Date</b> : @Html.DisplayFor(model => model.CreationDate)</h4>
+                <h4 class="section-heading"><b>Deadline</b> : @Html.DisplayFor(model => model.Deadline)</h4>
+                <h4 class="section-heading"><b>Status</b> : @Html.DisplayFor(model => model.Status)</h4>
+                <h4 class="section-heading"><b>Assigned Students</b> : @ViewBag.assigned</h4>
+               
+                </br>
+            </div>
+        </div>
+    </div>
+</section>
+<p></br>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
 @Html.Partial("_SubmitCommentPartial", new ViewDataDictionary { { "id", Model.ID } })
 <div class="page-header"><h4><b>Comments of this work</b></h4></div>
     <div class="container">

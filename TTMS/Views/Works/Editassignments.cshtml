@@ -1,11 +1,11 @@
 ﻿@model TTMS.Models.WorkAssignmentViewModel
 
 @{
-    ViewBag.Title = "Editassignments";
+    ViewBag.Title = "Edit assignments";
     Layout = "~/Views/Shared/_SupervisorLayout.cshtml";
 }
 
-<h2>Editassignments</h2>
+<h2>Edit Assignments</h2>
 
 
 @using (Html.BeginForm())
@@ -13,7 +13,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Work</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Work.ID)

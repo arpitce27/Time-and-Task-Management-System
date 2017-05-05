@@ -58,6 +58,16 @@ namespace TTMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Work work = db.Works.Find(id);
+            string str = string.Empty;
+
+            List<string> ls = new List<string>();
+            foreach (var item in work.Assignedstudents)
+            {
+                ls.Add(item.FirstName);
+            }
+            foreach (var item in ls)
+                str = str + item + ", ";
+            ViewBag.assigned = str;
             if (work == null)
             {
                 return HttpNotFound();

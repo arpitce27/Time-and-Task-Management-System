@@ -5,9 +5,10 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Work Report</h2>
 
 <p>
+    @Html.ActionLink("Back to home", "Index", "Supervisor")
 </p>
 <table class="table">
     <tr>
@@ -29,7 +30,7 @@
             @Html.DisplayFor(modelItem => item.HourWorked)
         </td>
         <td>
-            @Html.ActionLink("See Individual Hour Spent", "Details", new { id=item.ID })
+            @Html.ActionLink("See Individual Hour Spent", "reportbywork", new { id=item.ID })
         </td>
     </tr>
 }

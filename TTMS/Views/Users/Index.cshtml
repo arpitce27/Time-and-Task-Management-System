@@ -2,25 +2,25 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="jumbotron">
+    @using Microsoft.AspNet.Identity
+    @if (Request.IsAuthenticated)
+    {
+        @Html.AntiForgeryToken()
 
-@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
-{
-    @Html.AntiForgeryToken()
-
-    <h3>WELCOME @User.Identity.GetUserName()</h3>
-        <p class="lead">Here are the options for user:</p><br />
+        <h3>WELCOME @User.Identity.GetUserName()</h3>
+        <p class="lead">Here are the options for student users:</p><br />
         <p><a href="@Url.Action("Index", "AssignedTask")" class="btn btn-primary btn-lg">See assigned tasks</a></p><br />
         <p><a href="@Url.Action("Create", "WorkLogs")" class="btn btn-primary btn-lg">Enter your work log here!</a></p><br />
         <p><a href="@Url.Action("Index", "WorkLogs")" class="btn btn-primary btn-lg">See your Work log</a></p><br />
 
         @*<p><a href="@Url.Action("Index", "Works")" class="btn btn-primary btn-lg">All Works</a></p><br />
-        <p><a href="@Url.Action("Index", "WorkTypes")" class="btn btn-primary btn-lg">Create/Edit Work Type</a></p><br />
-        <p><a href="@Url.Action("", "Supervisor")" class="btn btn-primary btn-lg">View uncompleted Work</a></p><br />*@
+            <p><a href="@Url.Action("Index", "WorkTypes")" class="btn btn-primary btn-lg">Create/Edit Work Type</a></p><br />
+            <p><a href="@Url.Action("", "Supervisor")" class="btn btn-primary btn-lg">View uncompleted Work</a></p><br />*@
 
 
         @*<p><a href="" class="btn btn-primary btn-lg">Upload New Image &raquo;</a></p><br />
             <p><a href="" class="btn btn-primary btn-lg">Update and Delete Images &raquo;</a></p><br />
             <p><a href="" class="btn btn-primary btn-lg">View Submited Form &raquo;</a></p>*@
-}
-
+    }
+</div>
