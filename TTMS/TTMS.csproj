@@ -218,6 +218,14 @@
     <Compile Include="Migrations\201705042329580_work-model-changed.Designer.cs">
       <DependentUpon>201705042329580_work-model-changed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705051448302_Work-Model-Changed-05-05.cs" />
+    <Compile Include="Migrations\201705051448302_Work-Model-Changed-05-05.Designer.cs">
+      <DependentUpon>201705051448302_Work-Model-Changed-05-05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051618101_Work-Model-Changed-5511-14.cs" />
+    <Compile Include="Migrations\201705051618101_Work-Model-Changed-5511-14.Designer.cs">
+      <DependentUpon>201705051618101_Work-Model-Changed-5511-14.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -340,6 +348,9 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <None Include="App_Data\PublishProfiles\Arpit Patel infosite.pubxml" />
+    <None Include="Properties\PublishProfiles\Arpit-ttms.pubxml" />
+    <None Include="Properties\PublishProfiles\Arpit-web-deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -364,7 +375,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Template\Template.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -444,7 +457,6 @@
     <Content Include="Views\WorkReport\reportbywork.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="DataLayer\" />
   </ItemGroup>
   <ItemGroup>
@@ -472,6 +484,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705042329580_work-model-changed.resx">
       <DependentUpon>201705042329580_work-model-changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051448302_Work-Model-Changed-05-05.resx">
+      <DependentUpon>201705051448302_Work-Model-Changed-05-05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051618101_Work-Model-Changed-5511-14.resx">
+      <DependentUpon>201705051618101_Work-Model-Changed-5511-14.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

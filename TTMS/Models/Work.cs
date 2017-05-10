@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -43,12 +44,13 @@ namespace TTMS.Models
         public string WorkDescr { get; set; }
 
         [Required(ErrorMessage = "Creation Date field is required")]
+        [Column(TypeName = "DateTime2")]
         [DataType(DataType.Date)]
         [Display(Name = "Creation Date")]
         public System.DateTime CreationDate { get; set; }
 
-        [Required(ErrorMessage = "Deadline Date field is required")]
         [DataType(DataType.Date)]
+        [Column(TypeName = "DateTime2")]
         public Nullable<System.DateTime> Deadline { get; set; }
 
         [DisplayFormat(NullDisplayText = "Initiated")]

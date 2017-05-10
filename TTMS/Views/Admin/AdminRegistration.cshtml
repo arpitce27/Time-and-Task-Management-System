@@ -9,7 +9,6 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
@@ -118,6 +117,9 @@
         </div>
     </div>
 }
+<div>
+    @Html.ActionLink("Back to admin home", "Index", "Admin")
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

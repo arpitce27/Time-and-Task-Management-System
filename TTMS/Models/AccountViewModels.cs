@@ -49,7 +49,7 @@ namespace TTMS.Models
     public class LoginViewModel
     {
 		[Required]
-		[Display(Name = "UserName")]
+		[Display(Name = "User Name")]
 
 		public string UserName { get; set; }
 
@@ -65,7 +65,7 @@ namespace TTMS.Models
     public class RegisterViewModel
     {
 		[Required]
-		[Display(Name = "UserRoles")]
+		[Display(Name = "User Roles")]
 		public string UserRoles { get; set; }
 
 		[Required]
@@ -74,7 +74,7 @@ namespace TTMS.Models
 		public string Email { get; set; }
 
 		[Required]
-		[Display(Name = "UserName")]
+		[Display(Name = "User Name")]
 		public string UserName { get; set; }
 
 		[Required]
@@ -93,11 +93,11 @@ namespace TTMS.Models
         public string Office { get; set; }
 
         [Required(ErrorMessage = "First Name is Required!")]
-        [Display(Name = "FirstName")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         //[Required(ErrorMessage = "Last Name is Required!")]
-        [Display(Name = "LastName")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         //[Required(ErrorMessage = "Address is Required!")]
@@ -128,7 +128,7 @@ namespace TTMS.Models
     public class AdminRegistationViewModel
     {
         [Required]
-        [Display(Name = "UserRoles")]
+        [Display(Name = "User Roles")]
         public string UserRoles { get; set; }
 
         [Required]
@@ -137,7 +137,7 @@ namespace TTMS.Models
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "UserName")]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required]
@@ -156,11 +156,11 @@ namespace TTMS.Models
         public string Office { get; set; }
 
         [Required(ErrorMessage = "First Name is Required!")]
-        [Display(Name = "FirstName")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         //[Required(ErrorMessage = "Last Name is Required!")]
-        [Display(Name = "LastName")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         //[Required(ErrorMessage = "Address is Required!")]
@@ -202,7 +202,7 @@ namespace TTMS.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 

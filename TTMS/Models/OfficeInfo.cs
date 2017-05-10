@@ -12,10 +12,12 @@ namespace TTMS.Models
         public int PK_Office { get; set; }
 
         [Required(ErrorMessage = "Office Name is Required!")]
+        [Display(Name = "Office Name")]
         [StringLength(200)]
         public string OfficeName { get; set; }
 
         [Required(ErrorMessage = "Description is Required!")]
+        [Display(Name = "Description")]
         public string OfficeDescr { get; set; }
 
         [Required(ErrorMessage = "Address is Required!")]
@@ -31,7 +33,7 @@ namespace TTMS.Models
         public string State { get; set; }
 
         [Required(ErrorMessage = "Zip Code is Required!")]
-        [Display(Name = "Zip code")]
+        [Display(Name = "Zip Code")]
         public string Zip { get; set; }
 
         [Required(ErrorMessage = "Country is Required!")]
