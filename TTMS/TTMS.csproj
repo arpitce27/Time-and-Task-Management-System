@@ -349,6 +349,9 @@
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <None Include="App_Data\PublishProfiles\Arpit Patel infosite.pubxml" />
+    <Content Include="Documents\Developer Guide.pdf" />
+    <Content Include="Documents\Final Report.pdf" />
+    <Content Include="Documents\User Manual.pdf" />
     <None Include="Properties\PublishProfiles\Arpit-ttms.pubxml" />
     <None Include="Properties\PublishProfiles\Arpit-web-deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
